@@ -1,0 +1,35 @@
+---
+
+- name: Update package repositories
+  sudo: yes
+  apt:
+    update_cache: True
+  tags:
+    - apt
+    - update_cache
+
+- name: Install dnsmasq package dependencies
+  sudo: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  register: install_dnsmasq_package_dependencies
+  when: dnsmasq_package_dependencies is defined
+  with_items: dnsmasq_package_dependencies
+  tags:
+    - apt
+    - dependencies
+- debug: var=install_dnsmasq_package_dependencies.stdout_lines
+
+- name: Install dnsmasq dependencies
+  sudo: yes
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  register: install_dnsmasq_dependencies
+  when: dnsmasq_dependencies is defined
+  with_items: dnsmasq_dependencies
+  tags:
+    - apt
+    - dependencies
+- debug: var=install_dnsmasq_dependencies.stdout_lines
