@@ -1,0 +1,9 @@
+---
+- name: Create files
+  sudo: yes
+  file:
+    path: "{{ item.path }}"
+    state: "{{ item.state }}"
+    owner: "{{ item.owner }}"
+  with_items: dnsmasq_create_files
+  when: dnsmasq_create_files is defined

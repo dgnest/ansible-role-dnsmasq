@@ -1,0 +1,13 @@
+---
+# defaults file for dnsmasq
+
+dnsmasq_package_dependencies:
+  - "dnsmasq"
+
+# dnsmasq_dependencies:
+#   - name: "name"
+#     version: ""
+
+# dnsmasq_pip_dependencies:
+#   - name: "name"
+#     version: "0.1.1"
